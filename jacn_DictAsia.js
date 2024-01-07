@@ -59,13 +59,13 @@ class jacn_DictAsia {
         let reading_tone = T(readings[2]);
         reading =
           reading_kana || reading_trs
-            ? `假名[${reading_kana}] 罗马音[${reading_trs}] ${reading_tone}`
+            ? `假名${reading_kana} 罗马音${reading_trs} ${reading_tone}`
             : "";
       }
 
       let sensbodys = entry.querySelectorAll("#comment_0") || [];
       for (const sensbody of sensbodys) {
-        let meanings = sensbody.querySelectorAll(".wordtype ~ #text") || [];
+        let meanings = entry.querySelectorAll("#comment_0 > #text") || [];
         let pos = T(sensbody.querySelector(".wordtype"));
         pos = pos ? `<span class='pos'>${pos}</span>` : "";
         // make definition segement
