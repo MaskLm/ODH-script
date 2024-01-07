@@ -89,7 +89,7 @@ class jacn_DictAsia {
           let definition = "";
           chn_tran = `<span class='chn_tran'>${meaning}</span>`;
           let tran = `<span class='tran'>${chn_tran}</span>`;
-          definition += `${tran}` : `${pos}${tran}`;
+          definition += `${pos}${tran}`;
 
           // make exmaple segement
           let examps = exampleBlocks[meaningFlag].split("　 ");
