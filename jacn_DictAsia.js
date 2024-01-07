@@ -92,13 +92,14 @@ class jacn_DictAsia {
           definition += `${pos}${tran}`;
 
           // make exmaple segement
-          let examps = exampleBlocks[meaningFlag].split("　 ");
-          examps.splice(0, 1);
-          if (examps.length > 0 && this.maxexample > 0) {
+          let examps = exampleBlocks[meaningFlag]?.split("　 ");
+          //          examps.splice(0, 1);
+          if (examps?.length > 0 && this.maxexample > 0) {
             definition += '<ul class="sents">';
             for (const [index, examp] of examps) {
               if (index > this.maxexample - 1) break; // to control only 2 example sentence.
               const [ja_examp, chn_examp] = examp.split("／");
+              if (ja_examp) ja_examp = examp;
               definition += `<li class='sent'><span class='ja_sent'>${ja_examp.replace(
                 RegExp(expression, "gi"),
                 `<b>${expression}</b>`
@@ -125,6 +126,7 @@ class jacn_DictAsia {
   renderCSS() {
     let css = `
             <style>
+                div.phrasehead{margin: 2px 0;font-weight: bold;}
                 span.star {color: #FFBB00;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
