@@ -81,7 +81,7 @@ class jacn_DictAsia {
           if (element.tagName === "P" && temp.indexOf("【") != 0)
             exampleBlocks[exampleFlag - 1] = temp;
         });
-        delete meanings[0];
+        meanings.splice(0, 1);
         // make definition segement
         let meaningFlag = 0;
         for (const meaning of meanings) {
@@ -93,7 +93,7 @@ class jacn_DictAsia {
 
           // make exmaple segement
           let examps = exampleBlocks[meaningFlag].split("　 ");
-          delete(examps[0]);
+          examps.splice(0, 1);
           if (examps.length > 0 && this.maxexample > 0) {
             definition += '<ul class="sents">';
             for (const [index, examp] of examps) {
