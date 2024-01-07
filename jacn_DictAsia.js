@@ -65,7 +65,8 @@ class jacn_DictAsia {
 
       let sensbodys = entry.querySelectorAll("#comment_0") || [];
       for (const sensbody of sensbodys) {
-        let meanings = entry.querySelectorAll("#comment_0 > #text") || [];
+        let meanings = sensbody.querySelectorAll(".wordtype ~ #text") || [];
+        console.log(meanings);
         let pos = T(sensbody.querySelector(".wordtype"));
         pos = pos ? `<span class='pos'>${pos}</span>` : "";
         // make definition segement
