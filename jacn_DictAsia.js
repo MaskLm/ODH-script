@@ -89,7 +89,7 @@ class jacn_DictAsia {
           let definition = "";
           chn_tran = `<span class='chn_tran'>${meaning}</span>`;
           let tran = `<span class='tran'>${chn_tran}</span>`;
-          definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
+          definition += `${tran}` : `${pos}${tran}`;
 
           // make exmaple segement
           let examps = exampleBlocks[meaningFlag].split("　 ");
@@ -126,7 +126,6 @@ class jacn_DictAsia {
   renderCSS() {
     let css = `
             <style>
-                div.phrasehead{margin: 2px 0;font-weight: bold;}
                 span.star {color: #FFBB00;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
