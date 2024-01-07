@@ -99,7 +99,7 @@ class jacn_DictAsia {
             for (const [index, examp] of examps) {
               if (index > this.maxexample - 1) break; // to control only 2 example sentence.
               const [ja_examp, chn_examp] = examp.split("／");
-              if (ja_examp) ja_examp = examp;
+              if (!ja_examp) ja_examp = examp;
               definition += `<li class='sent'><span class='ja_sent'>${ja_examp.replace(
                 RegExp(expression, "gi"),
                 `<b>${expression}</b>`
