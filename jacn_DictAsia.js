@@ -97,8 +97,8 @@ class jacn_DictAsia {
           //          examps.splice(0, 1);
           if (examps?.length > 0 && this.maxexample > 0) {
             definition += '<ul class="sents">';
-            for (const [index, examp] of examps) {
-              if (index > this.maxexample - 1) break; // to control only 2 example sentence.
+            for (const examp of examps) {
+              if (examps.findIndex(examp) > this.maxexample - 1) break; // to control only 2 example sentence.
               const [ja_examp, chn_examp] = examp.split("／");
               if (!ja_examp) ja_examp = examp;
               definition += `<li class='sent'><span class='ja_sent'>${ja_examp.replace(
