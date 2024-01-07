@@ -65,12 +65,25 @@ class jacn_DictAsia {
 
       let sensbodys = entry.querySelectorAll("#comment_0") || [];
       for (const sensbody of sensbodys) {
-        let meanings = sensbody.querySelectorAll(".wordtype ~ #text") || [];
-        console.log(meanings);
         let pos = T(sensbody.querySelector(".wordtype"));
         pos = pos ? `<span class='pos'>${pos}</span>` : "";
+        let meanings = [];
+        let exampleBlocks = [];
+        let exampleFlag = 0;
+        sensbody.childNodes.forEach((element) => {
+          const temp = element.textContent.trim();
+          if (element.tagName === undefined && element.textContent)
+            meanings.push(temp);
+          if (element.tagName === "BR") {
+            exampleBlocks.push("");
+            exampleFlag++;
+          }
+          if (element.tagName === "P" && temp.indexOf("【") != 0)
+            exampleBlocks[exampleFlag - 1] = temp;
+        });
+        delete meanings[0];
         // make definition segement
-        let meaningFlag = 1;
+        let meaningFlag = 0;
         for (const meaning of meanings) {
           let chn_tran;
           let definition = "";
@@ -79,9 +92,8 @@ class jacn_DictAsia {
           definition += phrasehead ? `${phrasehead}${tran}` : `${pos}${tran}`;
 
           // make exmaple segement
-          let exampsBlock =
-            sensbody.querySelector(`.liju:nth-child(${meaningFlag})`) || "";
-          const examps = exampsBlock.querySelectorAll("#text") || [];
+          let examps = exampleBlocks[meaningFlag].split("　 ");
+          delete(examps[0]);
           if (examps.length > 0 && this.maxexample > 0) {
             definition += '<ul class="sents">';
             for (const [index, examp] of examps) {
